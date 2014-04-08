@@ -47,19 +47,8 @@ return array(
 			),
 		),
 		*/
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+		'db'=>file_exists(__DIR__ . '/db.php') ? require_once __DIR__ . '/db.php' : array(),
 		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
-		*/
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -83,8 +72,5 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>array(
-		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
-	),
+	'params'=>file_exists(__DIR__ . '/params.php') ? require_once __DIR__ . '/params.php' : array(),
 );
