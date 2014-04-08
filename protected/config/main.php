@@ -20,14 +20,14 @@ return array(
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		/*
+		/**/
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'Enter Your Password Here',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
-		*/
+
 	),
 
 	// application components
@@ -47,7 +47,7 @@ return array(
 			),
 		),
 		*/
-		'db'=>file_exists(__DIR__ . '/db.php') ? require_once __DIR__ . '/db.php' : array(),
+		'db'=>file_exists(__DIR__.DIRECTORY_SEPARATOR.'/db.php') ? require_once (__DIR__.DIRECTORY_SEPARATOR.'db.php') : array(),
 		// uncomment the following to use a MySQL database
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -72,5 +72,5 @@ return array(
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
-	'params'=>file_exists(__DIR__ . '/params.php') ? require_once __DIR__ . '/params.php' : array(),
+	'params'=>file_exists(__DIR__.DIRECTORY_SEPARATOR.'params.php') ? require_once (__DIR__.DIRECTORY_SEPARATOR.'params.php') : array(),
 );

@@ -6,5 +6,5 @@
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
-    );
+    ); //новый коммент
 ?>
