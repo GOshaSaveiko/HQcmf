@@ -47,7 +47,7 @@ return array(
 			),
 		),
 		*/
-		'db'=>file_exists(__DIR__.DIRECTORY_SEPARATOR.'/db.php') ? require_once (__DIR__.DIRECTORY_SEPARATOR.'db.php') : array(),
+		'db'=>file_exists(__DIR__.DIRECTORY_SEPARATOR.'db.php') ? require_once (__DIR__.DIRECTORY_SEPARATOR.'db.php') : array(),
 		// uncomment the following to use a MySQL database
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
