@@ -37,10 +37,10 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-
 		'urlManager'=>file_exists(__DIR__.'/urlManager.php') ? require_once (__DIR__.'/urlManager.php') : array(),
 
 		'db'=>file_exists(__DIR__.'/db.php') ? require_once (__DIR__.'/db.php') : array(),
+
 		// uncomment the following to use a MySQL database
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
@@ -66,4 +66,5 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>file_exists(__DIR__.'/params.php') ? require_once (__DIR__.'/params.php') : array(),
+
 );
