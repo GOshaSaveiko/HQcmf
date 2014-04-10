@@ -1,0 +1,18 @@
+<?php
+    return
+        array(
+            'urlFormat'=>'path',
+            'showScriptName'=>false,
+            'caseSensitive'=>false,
+            'useStrictParsing'=>true,
+            'urlSuffix'=>'/',
+            'rules'=>array(
+                'gii'=>'gii',
+                'gii/<controller:\w+>'=>'gii/<controller>',
+                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
+                ''=>'site/index',
+                '<_c:\w+>'=>'<_c>/index',
+                '<_c:\w+>/<_a:\w+>'=>'<_c>/<_a>',
+            )
+        );
+?>

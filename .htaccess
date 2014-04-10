@@ -1,0 +1,21 @@
+RewriteEngine on
+
+# если директория или файл существуют, использовать их напрямую
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# иначе отправлять запрос на файл index.php
+
+RewriteRule . index.php
+
+#домен без www
+RewriteCond %{HTTP_HOST} ^www.(.*)$
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+#обратный слеш
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+
+#нельзя торкнуться к скрипту на прямую
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{THE_REQUEST} (.*)\.php
+RewriteRule ^(.*)\.php / [R=301,L]

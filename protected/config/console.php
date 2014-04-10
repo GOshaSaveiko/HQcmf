@@ -11,19 +11,7 @@ return array(
 
 	// application components
 	'components'=>array(
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
-			'charset' => 'utf8',
-		),
-		*/
+		'db'=>file_exists(__DIR__.'/db.php') ? require_once (__DIR__.'/db.php') : array(),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
