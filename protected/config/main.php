@@ -6,7 +6,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'basePath'=>dirname(__FILE__).'/..',
 	'name'=>'My Web Application',
 
 	// preloading 'log' component
@@ -27,6 +27,8 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
+		'hqcmf'=>file_exists(__DIR__.'/hqcmf.php') ? require_once (__DIR__.'/hqcmf.php') : array(),
+
 
 	),
 
@@ -66,5 +68,4 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>file_exists(__DIR__.'/params.php') ? require_once (__DIR__.'/params.php') : array(),
-
 );
