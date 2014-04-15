@@ -7,9 +7,9 @@
             'useStrictParsing'=>true,
             'urlSuffix'=>'/',
             'rules'=>array(
-                'gii'=>'gii',
-                'gii/<controller:\w+>'=>'gii/<controller>',
-                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
+                '<_m:(hqcmf|gii)>'=>'<_m>',
+                '<_m:(hqcmf|gii)>/<controller:\w+>'=>'<_m>/<controller>',
+                '<_m:(hqcmf|gii)>/<controller:\w+>/<action:\w+>'=>'<_m>/<controller>/<action>',
                 ''=>'site/index',
                 '<_c:\w+>'=>'<_c>/index',
                 '<_c:\w+>/<_a:\w+>'=>'<_c>/<_a>',
