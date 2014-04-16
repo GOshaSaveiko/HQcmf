@@ -1,29 +1,24 @@
 <?php
 class HQCmfModule extends CWebModule
 {
+    public $theme; //theme for module
+
     /**
-     * Stores shared assets path
+     * Stores _shared assets path
      * @var string
      */
-    private $shared; //var to store shared assets
+    private $_shared; //var to store shared assets
+
 
     public function init() {
         // this method is called when the module is being created
         // you may place code here to customize the module or the application
+        $this->configureTheme();
+
         $this->layout = "/layouts/main";
 
-        $ad = Yii::getPathOfAlias('application.modules.hqcmf.assets');
-        if(file_exists($ad))
-        {
-            $am = Yii::app()->assetManager;
-            $this->shared = $am->publish($ad);
-        } else {
-            $this->shared = null;
-        }
-
-        $mpath = Yii::getPathOfAlias('application.modules.hqcmf.modules');
+        $mpath = Yii::getPathOfAlias('hqcmf.modules');
         YiiBase::setPathOfAlias('modules', $mpath);
-
     }
 
     public function beforeControllerAction($controller, $action) {
@@ -33,6 +28,26 @@ class HQCmfModule extends CWebModule
             return true;
         } else {
             return false;
+        }
+    }
+
+    public function getShared()
+    {
+        return $this->_shared;
+    }
+
+    protected function configureTheme()
+    {
+        $theme=($this->theme===null) ? '' : '.themes.'.$this->theme;
+
+        $this->setViewPath(Yii::getPathOfAlias('hqcmf'.$theme.'.views'));
+        $ad = Yii::getPathOfAlias('hqcmf'.$theme.'.assets');
+        if(file_exists($ad))
+        {
+            $am = Yii::app()->assetManager;
+            $this->_shared = $am->publish($ad);
+        } else {
+            $this->_shared = null;
         }
     }
 

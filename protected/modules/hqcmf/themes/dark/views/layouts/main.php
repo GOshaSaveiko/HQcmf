@@ -32,8 +32,8 @@
                     'encodeLabel'=>false,
                     'items'=>array(
                         TbHtml::menuDivider(array('class'=>'divider-vertical')),
-                        array('label'=>TbHtml::icon('icon-fire').'&nbsp;Burner&nbsp;'.TbHtml::badge(0,array('class'=>'badge-important')), 'url'=>'#'),
-                        array('label'=>TbHtml::icon('icon-envelope').'&nbsp;Messages&nbsp;'.TbHtml::badge(0,array('class'=>'badge-info')), 'url'=>'#'),
+                        array('label'=>TbHtml::icon('icon-fire icon-white').'&nbsp;Burner&nbsp;'.TbHtml::badge(0,array('class'=>'badge-important')), 'url'=>'#'),
+                        array('label'=>TbHtml::icon('icon-envelope icon-white').'&nbsp;Messages&nbsp;'.TbHtml::badge(0,array('class'=>'badge-info')), 'url'=>'#'),
                     ),
                 ),
                 array(
@@ -41,14 +41,14 @@
                     'htmlOptions'=>array('class'=>'pull-right'),
                     'encodeLabel'=>false,
                     'items'=>array(
-                        array('label'=>TbHtml::icon('icon-info-sign').'&nbsp;Info&nbsp;',
+                        array('label'=>TbHtml::icon('icon-info-sign icon-white').'&nbsp;Info&nbsp;',
                               'items'=>array(
                                     array('label'=>TbHtml::icon('icon-question-sign').'&nbsp;About','url'=>'#'),
                                     TbHtml::menuDivider(),
                                     array('label'=>TbHtml::icon('icon-bullhorn').'&nbsp;HQCmf news','url'=>'#'),
                               )
                         ),
-                        array('label'=>TbHtml::icon('icon-cog').'&nbsp;Settings&nbsp;',
+                        array('label'=>TbHtml::icon('icon-cog icon-white').'&nbsp;Settings&nbsp;',
                               'items'=>array(
                                   array('label'=>TbHtml::icon('icon-user').'&nbsp;Users','url'=>'#'),
                                   array('label'=>TbHtml::icon('icon-list-alt').'&nbsp;Modules','url'=>'#'),
@@ -59,7 +59,7 @@
                               )
                         ),
                         TbHtml::menuDivider(array('class'=>'divider-vertical')),
-                        array('label'=>TbHtml::icon('icon-user').'&nbsp;Info&nbsp;',
+                        array('label'=>TbHtml::icon('icon-user icon-white').'&nbsp;Info&nbsp;',
                             'items'=>array(
                                 array('label'=>TbHtml::icon('icon-briefcase').'&nbsp;Profile','url'=>'#'),
                                 TbHtml::menuDivider(),
@@ -126,7 +126,7 @@
         <hr>
 
         <footer>
-            <p>HQCmf v<?php echo Yii::app()->controller->module->Ver;?> - Content management framework =) </p>
+            <p>HQCmf v<?=Yii::app()->controller->module->Ver;?> - Content management framework =) </p>
         </footer>
 
     </div><!--/.fluid-container-->

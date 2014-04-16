@@ -1,6 +1,7 @@
 <?php
 return
 	array(
+//            'theme'=>'dark',
             'defaultController'=>'Core',
             'aliases'=>array(
             	'hqcmf'=> 'application.modules.hqcmf',

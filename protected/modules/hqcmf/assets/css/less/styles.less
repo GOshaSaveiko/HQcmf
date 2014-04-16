@@ -1,6 +1,7 @@
 /*@autocompile*/
 @body-font: 'DejaVu Sans', Verdana, Tahoma, Arial, sans-serif;
 @brand-font: 'Squada One', cursive;
+@brand-color: #800000;
 
 body {
 	font-family: @body-font;
@@ -10,15 +11,12 @@ body {
 }
 .linear-gradient(@position,@color1,@color2)
 {
+	background-color: @color1;
+  	background-image: -webkit-gradient(linear, center top, center bottom, from(@color1));
+  	background-image: -webkit-linear-gradient(@position,@color1,@color2);
 	background-image: -moz-linear-gradient(@position,@color1,@color2);
-    background-image: -webkit-linear-gradient(@position,@color1,@color2);
     background-image: -o-linear-gradient(@position,@color1,@color2);
     background-image: linear-gradient(@position,@color1,@color2);
-}
-
-.navbar-inner
-{
-	.linear-gradient(center top, #333333, #222222);
 }
 
 .navbar
@@ -31,41 +29,16 @@ body {
 		padding: 9px 20px 5px;
 		.cmf-logo-cl
 		{
-			color: #800000;
+			color: @brand-color;
 		}
 	}
 	.nav
 	{
 		li
 		{
-			a
-			{
-				 text-shadow: none;
-				 &:hover
-				 {
-				 //	color: #ffffff;
-				 }
-			}
-			.dropdown, dropdown.active, dropdown.open
-			{
-				.dropdown-toggle
-				{
-					.caret
-					{
-						border-bottom-color: #ffffff;
-    					border-top-color: #ffffff;
-					}
-				}
-			}
 		}
 
 		.nav-header {display: none;}
-	}
-	.divider-vertical
-	{
-	    background-color: #2222222;
-	    border-left: 1px solid #333333;
-	    border-right: 1px solid #333333;
 	}
 }
 
