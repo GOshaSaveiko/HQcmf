@@ -11,7 +11,7 @@ return
             	'hqcmf.models.*',
             	'hqcmf.conponents.*',
             	'bootstrap.helpers.*',
-
+                'bootstrap.behaviors.*',
     		),
 		    // application components
     		'components' => array(
