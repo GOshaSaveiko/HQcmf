@@ -2,6 +2,9 @@
 return
 	array(
 //            'theme'=>'dark',
+            'modules'=>array(
+//                'news'
+            ),
             'defaultController'=>'Core',
             'aliases'=>array(
             	'hqcmf'=> 'application.modules.hqcmf',
@@ -10,7 +13,7 @@ return
 
             'import' => array(
             	'hqcmf.models.*',
-            	'hqcmf.conponents.*',
+            	'hqcmf.components.*',
             	'bootstrap.helpers.*',
                 'bootstrap.behaviors.*',
     		),

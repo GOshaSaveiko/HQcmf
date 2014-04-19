@@ -4,7 +4,7 @@
  * this is CMS Yii adapter
  * @author GOshaSaveiko
  */
-class HQh extends HqcmfModule
+class HQh
 {
     /**
      * CMF translator. Core message source

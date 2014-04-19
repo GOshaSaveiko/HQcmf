@@ -1,5 +1,5 @@
 <?php
-class CoreController extends CController
+class CoreController extends HqController
 {
 
     /**

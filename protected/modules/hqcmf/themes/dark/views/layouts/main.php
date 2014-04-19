@@ -126,7 +126,7 @@
         <hr>
 
         <footer>
-            <p>HQCmf v<?=Yii::app()->controller->module->Ver;?> - Content management framework =) </p>
+            <p>HQCmf v<?=Yii::app()->controller->module->VersionCMF;?> - Content management framework =) </p>
         </footer>
 
     </div><!--/.fluid-container-->
