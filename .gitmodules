@@ -1,0 +1,3 @@
+[submodule "protected/modules/hqcmf/modules/users"]
+	path = protected/modules/hqcmf/modules/users
+	url = https://github.com/GOshaSaveiko/hqcmf-users.git
