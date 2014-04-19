@@ -1,6 +1,9 @@
 <?php
 class HqController extends Controller
 {
+    public $layout="";
+
+    /*
     public function getViewFile($viewName)
     {
         if(($theme=Yii::app()->getTheme())!==null && ($viewFile=$theme->getViewFile($this,$viewName))!==false)
@@ -48,5 +51,5 @@ class HqController extends Controller
         }
 
         return $this->resolveViewFile($layoutName,$module->getLayoutPath(),Yii::app()->getViewPath(),$module->getViewPath());
-    }
+    }*/
 }

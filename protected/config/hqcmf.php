@@ -3,7 +3,8 @@ return
 	array(
 //            'theme'=>'dark',
             'modules'=>array(
-//                'news'
+                'users'=>array('class'=>'hqcmf.modules.users.usersModule',
+                'defaultController'=>'UsersModule')
             ),
             'defaultController'=>'Core',
             'aliases'=>array(

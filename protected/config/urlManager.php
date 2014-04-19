@@ -1,18 +1,14 @@
 <?php
+
     return
         array(
             'urlFormat'=>'path',
             'showScriptName'=>false,
-            'caseSensitive'=>false,
-            'useStrictParsing'=>true,
-            'urlSuffix'=>'/',
+            'urlSuffix'=>'.html',
             'rules'=>array(
-                '<_m:(hqcmf|gii)>'=>'<_m>',
-                '<_m:(hqcmf|gii)>/<controller:\w+>'=>'<_m>/<controller>',
-                '<_m:(hqcmf|gii)>/<controller:\w+>/<action:\w+>'=>'<_m>/<controller>/<action>',
-                ''=>'site/index',
-                '<_c:\w+>'=>'<_c>/index',
-                '<_c:\w+>/<_a:\w+>'=>'<_c>/<_a>',
-            )
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            ),
         );
 ?>
