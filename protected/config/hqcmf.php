@@ -3,7 +3,7 @@ return
 	array(
 //            'theme'=>'dark',
             'modules'=>array(
-                'users'=>array('class'=>'hqcmf.modules.users.usersModule',
+                'users'=>array('class'=>'hqcmf.modules.users.UsersModule',
                 'defaultController'=>'UsersModule')
             ),
             'defaultController'=>'Core',
@@ -25,10 +25,6 @@ return
         		),
         		'errorHandler' => array(
                         'errorAction' => 'hqcmf/core/error',
-                ),
-                'user' => array(
-                    'class' => 'CMFUser',
-                    'loginUrl'=>array('hqcmf/core/login'),
                 ),
     		),
 

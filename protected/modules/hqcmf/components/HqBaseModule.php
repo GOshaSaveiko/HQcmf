@@ -7,11 +7,21 @@ class HqBaseModule extends CWebModule
      * @var string
      */
     protected $_shared; //var to store shared assets
+    /**
+    * Storres current theme value from hqcmf.php
+    * @var string
+    */
+    public $theme; //theme for module
 
     public function __construct($id,$parent,$config=null)
     {
         parent::__construct($id,$parent,$config);
         $this->_config=$config;
+    }
+
+    public function init()
+    {
+        $this->configureTheme();
     }
 
     public function beforeControllerAction($controller, $action)
@@ -23,6 +33,20 @@ class HqBaseModule extends CWebModule
         else
         {
             return false;
+        }
+    }
+
+    protected function configureTheme()
+    {
+        $theme=($this->theme===null) ? '' : '.themes.'.$this->theme;
+
+        $ad = Yii::getPathOfAlias('hqcmf'.$theme.'.assets');
+        if(file_exists($ad))
+        {
+            $am = Yii::app()->assetManager;
+            $this->_shared = $am->publish($ad);
+        } else {
+            $this->_shared = null;
         }
     }
 
