@@ -1,8 +1,9 @@
 <?php
 Yii::import('hqcmf.components.HqBaseModule');
+
 class HQCmfModule extends HqBaseModule
 {
-    public $theme; //theme for module
+
 
     public function init() {
         // this method is called when the module is being created

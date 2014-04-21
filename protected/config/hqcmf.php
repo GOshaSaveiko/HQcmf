@@ -3,8 +3,10 @@ return
 	array(
 //            'theme'=>'dark',
             'modules'=>array(
-                'users'=>array('class'=>'hqcmf.modules.users.UsersModule',
-                'defaultController'=>'UsersModule')
+                'users'=>array(
+                    'class'=>'hqcmf.modules.users.UsersModule',
+                    'defaultController'=>'UsersModule'
+                )
             ),
             'defaultController'=>'Core',
             'aliases'=>array(
@@ -15,6 +17,7 @@ return
             'import' => array(
             	'hqcmf.models.*',
             	'hqcmf.components.*',
+              //  'hqcmf.models.*',
             	'bootstrap.helpers.*',
                 'bootstrap.behaviors.*',
     		),
@@ -26,6 +29,11 @@ return
         		'errorHandler' => array(
                         'errorAction' => 'hqcmf/core/error',
                 ),
+                'user' => array(
+                    'class' => 'HqUser',
+                    'loginUrl'=>array('hqcmf/core/login'),
+                ),
+
     		),
 
 	);

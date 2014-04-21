@@ -1,7 +1,39 @@
 <?php
-class HqController extends Controller
+class HqController extends CController
 {
     public $layout="";
+
+    public function filters()
+    {
+        return array(
+            'accessControl',
+        );
+    }
+
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions'=>array('login','captcha','error'),
+                'users'=>array('?'),
+            ),
+            array('allow',
+                'users'=>array('@'),
+                'roles'=>array('administrator'),
+            ),
+            array('allow',
+                'users'=>array('@'),
+                'controllers'=>array('core'),
+               // 'actions'=>array('error','logout'),
+                'roles'=>array('user','guest'),
+            ),
+            array('deny',
+                'users'=>array('*'),
+            ),
+        );
+    }
+
+
 
     /*
     public function getViewFile($viewName)
