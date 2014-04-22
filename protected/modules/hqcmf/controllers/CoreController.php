@@ -54,6 +54,7 @@ class CoreController extends HqController
             if(Yii::app()->request->isAjaxRequest)
                 echo $error['message'];
             else
+                $this->layout = '/layouts/error';
                 $this->render('error', $error);
         }
     }

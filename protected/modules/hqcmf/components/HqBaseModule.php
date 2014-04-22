@@ -23,6 +23,8 @@ class HqBaseModule extends CWebModule
         {
             Yii::app()->setComponent('user',$this->_config['components']['hquser']);
         }
+
+        Yii::app()->setComponent('errorHandler',array('errorAction'=>'hqcmf/core/error'));
     }
 
     public function init()
