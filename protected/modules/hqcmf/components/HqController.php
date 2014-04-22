@@ -52,7 +52,7 @@ class HqController extends CController
         }
         return $this->resolveViewFile($viewName,$this->getViewPath(),$basePath,$moduleViewPath);
     }
-
+    */
     public function getLayoutFile($layoutName)
     {
         if($layoutName===false)
@@ -84,5 +84,5 @@ class HqController extends CController
         }
 
         return $this->resolveViewFile($layoutName,$module->getLayoutPath(),Yii::app()->getViewPath(),$module->getViewPath());
-    }*/
+    }
 }

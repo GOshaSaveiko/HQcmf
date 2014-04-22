@@ -6,7 +6,7 @@ class HqUserIdentity extends CUserIdentity
     public function authenticate()
     {
         $username=strtolower($this->username);
-        $user=User::model()->find('LOWER(u_login)=?',array($username));
+        $user=UserModel::model()->find('LOWER(u_login)=?',array($username));
         if($user===null)
             $this->errorCode=self::ERROR_USERNAME_INVALID;
         else if(!$user->validatePassword($this->password))

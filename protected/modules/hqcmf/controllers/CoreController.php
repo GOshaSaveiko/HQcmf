@@ -60,8 +60,20 @@ class CoreController extends HqController
     
     public function actionLogin()
     {
-        Echo "login!";
+        $model=new UserLoginForm;
+        // collect user input data
+        if(isset($_POST['UserLoginForm']))
+        {
+            $model->attributes=$_POST['UserLoginForm'];
+            // validate user input and redirect to the previous page if valid
+            if($model->validate() && $model->login())
+                $this->redirect(Yii::app()->getModule('hqcmf')->hquser->returnUrl);
+        }
+        // display the login form
+        $this->layout = '/layouts/login';
+        $this->render('_login',array('model'=>$model));
     }
+
 
     public function actionLogout()
     {
