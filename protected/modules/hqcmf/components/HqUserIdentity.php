@@ -13,7 +13,7 @@ class HqUserIdentity extends CUserIdentity
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         else
         {
-            $this->_id=$user->id;
+            $this->_id=$user->u_id;
             $this->username=$user->u_login;
             $this->errorCode=self::ERROR_NONE;
         }
