@@ -30,6 +30,3 @@ class HqUser extends CWebUser {
         return $this->_model;
     }
 }
-?>
-
-

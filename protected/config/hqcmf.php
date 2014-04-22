@@ -2,6 +2,10 @@
 return
 	array(
 //            'theme'=>'dark',
+            //pages that not require login
+            'nologin'=>array(
+                'hqcmf/core/login',
+            ),
             'modules'=>array(
                 'users'=>array(
                     'class'=>'hqcmf.modules.users.UsersModule',
@@ -29,7 +33,7 @@ return
         		'errorHandler' => array(
                         'errorAction' => 'hqcmf/core/error',
                 ),
-                'user' => array(
+                'hquser' => array(
                     'class' => 'HqUser',
                     'loginUrl'=>array('hqcmf/core/login'),
                 ),

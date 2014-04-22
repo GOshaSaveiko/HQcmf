@@ -3,6 +3,7 @@ class HqController extends CController
 {
     public $layout="";
 
+    /*
     public function filters()
     {
         return array(
@@ -32,7 +33,7 @@ class HqController extends CController
             ),
         );
     }
-
+    */
 
 
     /*
