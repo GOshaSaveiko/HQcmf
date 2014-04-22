@@ -32,7 +32,7 @@ return
                 ),
                 'hquser' => array(
                     'class' => 'HqUser',
-                    'loginUrl'=>array('hqcmf/core/login/'),
+                    'loginUrl'=>array('hqcmf/core/login'),
                 ),
 
     		),

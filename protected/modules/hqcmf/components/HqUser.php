@@ -16,7 +16,7 @@ class HqUser extends CWebUser {
 
     public function getMail()
     {
-        if(($user=$this->getModel())){
+        if(($user=$this->getModel())!==null){
             return $user->u_mail;
         }
     }

@@ -36,6 +36,7 @@ class HqBaseModule extends CWebModule
         {
             return false;
         }
+        return true;
     }
 
     protected function configureTheme()
