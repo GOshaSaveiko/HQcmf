@@ -3,9 +3,6 @@ return
 	array(
 //            'theme'=>'dark',
             //pages that not require login
-            'nologin'=>array(
-                'hqcmf/core/login',
-            ),
             'modules'=>array(
                 'users'=>array(
                     'class'=>'hqcmf.modules.users.UsersModule',
@@ -35,7 +32,7 @@ return
                 ),
                 'hquser' => array(
                     'class' => 'HqUser',
-                    'loginUrl'=>array('hqcmf/core/login'),
+                    'loginUrl'=>array('hqcmf/core/login/'),
                 ),
 
     		),

@@ -13,16 +13,16 @@ class HqBaseModule extends CWebModule
     */
     public $theme; //theme for module
 
-    /**
-     * Stores array of pages that not require login
-     * @var array
-     */
-    public $nologin;
-
     public function __construct($id,$parent,$config=null)
     {
         parent::__construct($id,$parent,$config);
+
         $this->_config=$config;
+
+        if (isset($this->_config['components']['hquser']))
+        {
+            Yii::app()->setComponent('user',$this->_config['components']['hquser']);
+        }
     }
 
     public function init()
@@ -32,22 +32,7 @@ class HqBaseModule extends CWebModule
 
     public function beforeControllerAction($controller, $action)
     {
-        
-        $request = Yii::app()->urlManager->parseUrl(Yii::app()->request);
-        $nologin = Yii::app()->getModule('hqcmf')->nologin;
-        $hquser = Yii::app()->getModule('hqcmf')->hquser;
-        if($hquser->getIsGuest() && !in_array($request, $nologin))
-        {
-            $hquser->loginRequired();
-           // echo var_dump(Yii::app()->urlManager->parseUrl(Yii::app()->request));
-        };
-                
-
-        if(parent::beforeControllerAction($controller, $action))
-        {
-            return true;
-        }
-        else
+        if(!parent::beforeControllerAction($controller, $action))
         {
             return false;
         }
