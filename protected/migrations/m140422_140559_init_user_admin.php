@@ -6,7 +6,7 @@ class m140422_140559_init_user_admin extends CDbMigration
 	{
         $this->insert('user',array(
            'u_login'=>'admin',
-           'u_pass'=>'admin',
+           'u_pass'=>CPasswordHelper::hashPassword('admin'),
            'u_mail'=>'admin@admin.com',
         ));
 	}
