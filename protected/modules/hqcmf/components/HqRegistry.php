@@ -9,6 +9,12 @@
 
 class HqRegistry
 {
+    
+    /**
+     * @var string stores model class name
+     */
+    public static $regmodel = "Registry";
+
     /**
      * Loads Redistry model
      * @param $key key to load model
@@ -16,12 +22,13 @@ class HqRegistry
      * @return Registry
      * @throws CHttpException
      */
-    private function loadModel($key,$cancreate = false)
+    private static function loadModel($key, $createIfNotExists = false)
     {
-        $model = Registry::model()->findByPk($key);
+        $regmodel = self::$regmodel;
+        $model = $regmodel::model()->findByPk($key);
         if($model===null){
-            if(!$cancreate)
-                throw new CHttpException('The requested key does not exist.');
+            if(!$createIfNotExists)
+                throw new InvalidArgumentException('The requested key does not exist.');
             $model = new Registry();
         }
         return $model;
@@ -31,9 +38,14 @@ class HqRegistry
      * Deletes key from storage
      * @param $key Key to delete from storage
      */
-    private function delete($key)
+    public static function delete($key)
     {
-        $this->loadModel($key)->delete();
+        try {
+            self::loadModel($key)->delete();
+        } catch (InvalidArgumentException $e) {
+            if(YII_DEBUG) throw $e;
+            return false;
+        }
         return true;
     }
 
@@ -42,14 +54,14 @@ class HqRegistry
      * @param $key Key to write
      * @param $value Value to write. If empty - key will be deleted
      */
-    public function write($key,$value)
+    public static function write($key,$value)
     {
         if(empty($key))
-            throw new CHttpException('The key not specified.');
+            throw new InvalidArgumentException('The key not specified.');
         if(empty($value)){
-            $this->delete($key);
+            self::delete($key);
         } else {
-            $model = $this->loadModel($key,true);
+            $model = self::loadModel($key,true);
             $model->r_key = $key;
             $model->r_value = $value;
             $model->save();
@@ -61,9 +73,20 @@ class HqRegistry
      * Read value from registry storage by key
      * @param $key to read
      */
-    public function read($key)
+    public static function read($key)
     {
-        $model = $this->loadModel($key);
+        $model = self::loadModel($key);
         return $model->r_value;
+    }
+
+    /**
+     * Checks if key exists in registry
+     * @param $key - key to check
+     * @return bool
+     */
+    public static function check($key)
+    {
+        $check = self::loadModel($key,true);
+        return (!$check->isNewRecord)?true:false;
     }
 }
