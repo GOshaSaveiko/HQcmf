@@ -9,7 +9,8 @@ class UserLoginForm extends CFormModel
 {
 	public $username;
 	public $password;
-	public $verifyCode;
+    public $remember_me;
+	public $verify_code;
 	private $_identity;
 
 	/**
@@ -25,10 +26,10 @@ class UserLoginForm extends CFormModel
 			// password needs to be authenticated
 			array('password', 'authenticate'),
 		);
-        
-        if(IsSet($_SESSION['logintry']) && $_SESSION['logintry']>=3)
+
+        if(IsSet(Yii::app()->user->viewCaptcha))
         {
-            $rules[]=array('verifyCode', 'captcha', 'allowEmpty'=>!extension_loaded('gd'));
+            $rules[]=array('verify_code', 'captcha', 'allowEmpty'=>!extension_loaded('gd'));
         }
         
         return $rules;
@@ -51,18 +52,6 @@ class UserLoginForm extends CFormModel
 	 */
 	public function authenticate($attribute,$params)
 	{
-		//if(empty($this->username) || $this->username == Hqh::t('LOGIN'))  $this->addError('username',Hqh::t('Please enter user name'));
-		//if(empty($this->password) || $this->password == Hqh::t('PASSWORD')) $this->addError('password',Hqh::t('Please enter password'));
-		if(IsSet($_SESSION['logintry']) && $_SESSION['logintry']>=3)
-		{
-		/*    
-			if(empty($this->verifyCode)){
-		    	$this->addError('verifyCode','Нет кода проверки');
-			} elseif($this->verifyCode !== 'code') {
-		    	$this->addError('verifyCode','Код проверки не совпадает');
-		    }
-		*/
-		}
 		$this->_identity=new HqUserIdentity($this->username,$this->password);
 		if(!$this->_identity->authenticate())
 			$this->addError('formerr',Hqh::t('Check the form is correct'));
@@ -81,8 +70,8 @@ class UserLoginForm extends CFormModel
 		}
 		if($this->_identity->errorCode===HqUserIdentity::ERROR_NONE)
 		{
-			//$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
-			Yii::app()->getModule('hqcmf')->hquser->login($this->_identity,0); //0 вместо $duration
+			$duration=$this->remember_me ? 3600*24*30 : 0; // 30 days
+			Yii::app()->user->login($this->_identity,$duration); //0 вместо $duration
 			return true;
 		}
 		else

@@ -60,6 +60,8 @@ class CoreController extends HqController
     
     public function actionLogin()
     {
+        UserCaptcha::isCaptcha();
+
         $model=new UserLoginForm;
         // collect user input data
         if(isset($_POST['UserLoginForm']))
@@ -67,7 +69,14 @@ class CoreController extends HqController
             $model->attributes=$_POST['UserLoginForm'];
             // validate user input and redirect to the previous page if valid
             if($model->validate() && $model->login())
-                $this->redirect(Yii::app()->getModule('hqcmf')->hquser->returnUrl);
+            {
+                UserCaptcha::clearCaptcha();
+                $this->redirect(Yii::app()->user->returnUrl);
+            }
+            else
+            {
+                UserCaptcha::addCaptcha();
+            }
         }
         // display the login form
         $this->layout = '/layouts/login';

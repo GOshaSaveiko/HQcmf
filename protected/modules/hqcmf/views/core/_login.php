@@ -16,28 +16,33 @@
     'enableAjaxValidation'=>false, 
 )); ?>
 
-    <p class="help-block">Fields with <span class="required">*</span> are required.</p> 
-
     <?php echo $form->errorSummary($model); ?>
 
             <?php echo $form->textFieldControlGroup($model,'username',array('span'=>5,'maxlength'=>24)); ?>
 
             <?php echo $form->textFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>64)); ?>
 
-            <?php if(IsSet($_SESSION['logintry']) && $_SESSION['logintry']>=3): ?>
+            <?php echo $form->checkBoxControlGroup($model,'remember_me',array('span'=>5,'maxlength'=>64)); ?>
+
+            <?php if(IsSet(Yii::app()->user->viewCaptcha)) : ?>
             <div class="row">
                 <?php if(extension_loaded('gd')): ?>
-                    <div class="hint"><?php echo Hqh::t('You performed more than 3 tries.'); ?><br /><?php echo Hqh::t('Enter the CAPTCHA code.');?></div>
+                    <div class="hint">
+                        <?php echo Hqh::t('You performed more than 3 tries.'); ?><br />
+                        <?php echo Hqh::t('Enter the CAPTCHA code.');?>
+                    </div>
                     <?php $this->widget('CCaptcha',array('clickableImage'=>true,'showRefreshButton'=>false,'imageOptions'=>array('border'=>"1"))); ?>
-                    <div class="hint"><?php echo Hqh::t('Click on the image to refresh CAPTCHA code.');?></div>
-                    <?php echo $form->textField($model,'verifyCode'); ?>
-                    <?php echo $form->error($model,'verifyCode');?>
+                    <div class="hint">
+                        <?php echo Hqh::t('Click on the image to refresh CAPTCHA code.');?>
+                    </div>
+                    <?php echo $form->textField($model,'verify_code'); ?>
+                    <?php echo $form->error($model,'verify_code');?>
                 <?php endif; ?>
             </div>
      <?php endif; ?>
 
 
-        <div class="form-actions"> 
+        <div>
         <?php echo TbHtml::submitButton('Log In',array( 
             'color'=>TbHtml::BUTTON_COLOR_PRIMARY, 
             'size'=>TbHtml::BUTTON_SIZE_LARGE, 

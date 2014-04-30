@@ -19,7 +19,7 @@ class HqController extends CController
             ),
             array('allow',
                 'users'=>array('@'),
-                'roles'=>array('administrator'),
+//                'roles'=>array('administrator'),
             ),
             array('allow',
                 'users'=>array('@'),
