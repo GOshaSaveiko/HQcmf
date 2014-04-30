@@ -15,7 +15,7 @@ class HqController extends CController
         return array(
             array('allow',
                 'actions'=>array('login','captcha','error'),
-                'users'=>array('?'),
+                'users'=>array('*'),
             ),
             array('allow',
                 'users'=>array('@'),
