@@ -59,11 +59,11 @@
                               )
                         ),
                         TbHtml::menuDivider(array('class'=>'divider-vertical')),
-                        array('label'=>TbHtml::icon('icon-user').'&nbsp;Info&nbsp;',
+                        array('label'=>TbHtml::icon('icon-user').'&nbsp;'.Yii::app()->user->login.'&nbsp;',
                             'items'=>array(
                                 array('label'=>TbHtml::icon('icon-briefcase').'&nbsp;Profile','url'=>'#'),
                                 TbHtml::menuDivider(),
-                                array('label'=>TbHtml::icon('icon-off').'&nbsp;Settings','url'=>'#'),
+                                array('label'=>TbHtml::icon('icon-off').'&nbsp;Logout','url'=>Yii::app()->createUrl('hqcmf/core/logout')),
                             )
                         ),
                     ),
