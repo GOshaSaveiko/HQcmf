@@ -17,7 +17,7 @@ class Registry extends CActiveRecord
      */
     public function tableName()
     {
-        return 'registry';
+        return '{{registry}}';
     }
 
     /**

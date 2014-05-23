@@ -16,7 +16,7 @@ class UserCaptcha extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'user_captcha';
+		return '{{user_captcha}}';
 	}
 
 	/**

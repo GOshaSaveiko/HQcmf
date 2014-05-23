@@ -27,6 +27,4 @@ class HqUser extends CWebUser {
         }
         return $this->_model;
     }
-
-    public function CheckAccess()
 }
