@@ -8,6 +8,6 @@
         'charset' => 'utf8',
         'enableProfiling' => true,
         'enableParamLogging' => true,
-        'tablePrefix'=>'hqcmf_',
+        'tablePrefix'=>'hqcmf_', //please set empty string '' if don`t want to use table prefix
     );
 ?>
