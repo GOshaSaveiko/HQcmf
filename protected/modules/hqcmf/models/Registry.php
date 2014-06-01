@@ -10,7 +10,7 @@
  * @property string $r_key
  * @property string $r_value
  */
-class Registry extends CActiveRecord
+class Registry extends HqModel
 {
     /**
      * @return string the associated database table name

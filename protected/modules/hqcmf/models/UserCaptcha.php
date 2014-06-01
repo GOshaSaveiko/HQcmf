@@ -9,7 +9,7 @@
  * @property integer $uc_count
  * @property integer $uc_time
  */
-class UserCaptcha extends CActiveRecord
+class UserCaptcha extends HqModel
 {
 	/**
 	 * @return string the associated database table name

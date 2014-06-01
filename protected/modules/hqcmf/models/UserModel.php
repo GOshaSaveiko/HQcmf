@@ -13,7 +13,7 @@
  * The followings are the available model relations:
  * @property UserRoleRelation[] $userRoleRelations
  */
-class UserModel extends CActiveRecord
+class UserModel extends HqModel
 {
     /**
      * Returns the static model of the specified AR class.
@@ -118,5 +118,12 @@ class UserModel extends CActiveRecord
     public function hashPassword($password)
     {
         return CPasswordHelper::hashPassword($password);
+    }
+
+    public function getRoles()
+    {
+        $roles=$this->getInstanceRelation('userRoleRelations')->getUserRoles($this->u_id);
+
+        return $roles;
     }
 }

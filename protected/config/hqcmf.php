@@ -34,6 +34,10 @@ return
                     'class' => 'HqUser',
                     'loginUrl'=>array('hqcmf/core/login'),
                 ),
+                'authManager' => array(
+                    'class' => 'HqAuthManager',
+                    'defaultRoles'=>array('guest'),
+                ),
 
     		),
 

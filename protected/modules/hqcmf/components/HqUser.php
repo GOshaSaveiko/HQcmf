@@ -7,6 +7,8 @@
 class HqUser extends CWebUser {
     private $_model = null;
 
+    protected $_roles;
+
     public function getLogin()
     {
         if(($user=$this->getModel())!==null){
@@ -19,6 +21,15 @@ class HqUser extends CWebUser {
         if(($user=$this->getModel())!==null){
             return $user->u_mail;
         }
+    }
+
+    public function getRoles($reset=false)
+    {
+        if ($reset || $this->_roles===null)
+        {
+            $this->_roles=$this->getModel()->getRoles();
+        }
+        return $this->_roles;
     }
 
     private function getModel(){
