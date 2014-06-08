@@ -14,14 +14,14 @@ class m140607_201124_rights_table_init extends CDbMigration
         $this->createIndex('r_role','{{rights}}','r_role');
         $this->createIndex('r_task','{{rights}}','r_task');
         $this->createIndex('r_role_task_UNIQUE','{{rights}}','r_role,r_task',true);
-        $this->addForeignKey('fk_ur_r', '{{user_role}}', 'ur_id',
-            '{{rights}}', 'r_role', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('fk_r_ur', '{{rights}}', 'r_role',
+            '{{user_role}}', 'ur_id', 'CASCADE', 'CASCADE');    
 	}
 
 	public function down()
 	{
 		echo "m140607_201124_rights_table_init migration down...\n";
-        $this->dropForeignKey('fk_ur_r','{{user_role}}');
+        $this->dropForeignKey('fk_r_ur','{{rights}}');
         $this->dropTable('{{rights}}');
         return true;
 	}
