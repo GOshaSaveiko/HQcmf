@@ -24,6 +24,11 @@ class HqBaseModule extends CWebModule
             Yii::app()->setComponent('user',$this->_config['components']['hquser']);
         }
 
+        if (isset($this->_config['components']['authManager']))
+        {
+            Yii::app()->setComponent('authManager',$this->_config['components']['authManager']);
+        }
+
         Yii::app()->setComponent('errorHandler',array('errorAction'=>'hqcmf/core/error'));
     }
 
