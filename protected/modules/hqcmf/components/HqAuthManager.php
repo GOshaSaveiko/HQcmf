@@ -8,7 +8,7 @@ class HqAuthManager extends CPhpAuthManager
 
     public function checkAccess($itemName,$userId,$params=array())
     {
-        return false;
+        return true;
     }
 }
 ?>

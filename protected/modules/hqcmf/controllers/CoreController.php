@@ -42,8 +42,9 @@ class CoreController extends HqController
 
     public function actionIndex()
     {
-       //echo "Core module!";
-	   $this->render('index');
+        if(!Yii::app()->user->checkAccess('core.ActionIndex'))
+            throw new CHttpException(403, 'Forbidden');
+        $this->render('index');
     }
 
     public function actionError()
