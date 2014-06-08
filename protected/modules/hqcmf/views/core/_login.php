@@ -20,7 +20,7 @@
 
             <?php echo $form->textFieldControlGroup($model,'username',array('span'=>5,'maxlength'=>24)); ?>
 
-            <?php echo $form->textFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>64)); ?>
+            <?php echo $form->passwordFieldControlGroup($model,'password',array('span'=>5,'maxlength'=>64)); ?>
 
             <?php echo $form->checkBoxControlGroup($model,'remember_me',array('span'=>5,'maxlength'=>64)); ?>
 
