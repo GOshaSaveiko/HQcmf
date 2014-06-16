@@ -49,6 +49,7 @@ class UserRole extends HqModel
 		// class name for the relations automatically generated below.
 		return array(
 			'relations' => array(self::HAS_MANY, 'UserRoleRelation', 'urr_ur_id'),
+            'rights' => array(self::HAS_MANY, 'UserRights', 'r_role'),
 		);
 	}
 
