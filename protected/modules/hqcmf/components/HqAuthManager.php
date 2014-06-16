@@ -23,9 +23,11 @@ class HqAuthManager extends CPhpAuthManager
                 $access = true;
             } elseif(count($roles)>0) {
                 $role_criteria = array();
+                $su = false;
                 foreach($roles as $role)
                 {
                     $role_criteria[] = (int)$role->ur_id;
+                    if((string)$role==='su') $su = true;
                 }
                 $criteria = new CDbCriteria();
                 $criteria->condition = 'r_task=:itemName';
@@ -33,17 +35,15 @@ class HqAuthManager extends CPhpAuthManager
                 $criteria->addInCondition("r_role", $role_criteria);
                 $rights = UserRights::model()->findAll($criteria);
 
-                if(count($rights)>0)
+                $rights_array = array();
+                foreach ($rights as $right)
                 {
-                    $rights_array = array();
-                    foreach ($rights as $right)
-                    {
-                        $rights_array[] = (int)$right->r_flag;
-                    }
-                    $access = (array_reduce($rights_array,"self::reduceRights") > 0 ? true : false);
-                   // $access = true;
+                    $rights_array[] = (int)$right->r_flag;
                 }
-
+                if($su) $rights_array[] = 1; //su role has all flags to Allow
+                
+                if(count($rights_array)>0)
+                    $access = (array_reduce($rights_array,"self::reduceRights") > 0 ? true : false);
 
             }
         }
