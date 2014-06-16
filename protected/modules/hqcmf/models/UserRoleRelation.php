@@ -114,7 +114,8 @@ class UserRoleRelation extends HqModel
         {
             foreach ($ar_roles as $role)
             {
-                $roles[]=$role->role;
+                if($role->role->ur_switch)
+                    $roles[]=$role->role;
             }
         }
         return $roles;
