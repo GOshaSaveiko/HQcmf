@@ -103,4 +103,13 @@ class UserRole extends HqModel
 	{
 		return parent::model($className);
 	}
+
+    public function getName() {
+        if($this::model() !== null)
+           return $this->ur_name;
+    }
+
+    public function __toString() {
+        return $this->getName();
+    }
 }
