@@ -3,6 +3,8 @@ class HqController extends CController
 {
     public $layout="";
 
+    public $hqLayout = "/layouts/main";
+
     public function filters()
     {
         return array(
@@ -83,4 +85,27 @@ class HqController extends CController
 
         return $this->resolveViewFile($layoutName,$module->getLayoutPath(),Yii::app()->getViewPath(),$module->getViewPath());
     }
+
+    public function hqRender($view,$data=null,$return=false)
+    {
+        if($this->beforeRender($view))
+        {
+            $output=$this->renderPartial($view,$data,true);
+            if(($layoutFile=$this->getLayoutFile($this->hqLayout))!==false)
+                $output=$this->renderFile($layoutFile,array_merge($data,array('content'=>$output)),true);
+
+            if(($layoutFile=$this->getLayoutFile($this->layout))!==false)
+                $output=$this->renderFile($layoutFile,array_merge($data,array('content'=>$output)),true);
+
+            $this->afterRender($view,$output);
+
+            $output=$this->processOutput($output);
+
+            if($return)
+                return $output;
+            else
+                echo $output;
+    }
+}
+
 }

@@ -48,16 +48,16 @@
                                     array('label'=>TbHtml::icon('icon-bullhorn').'&nbsp;HQCmf news','url'=>'#'),
                               )
                         ),
-                        array('label'=>TbHtml::icon('icon-cog').'&nbsp;Settings&nbsp;',
+                        (Yii::app()->user->checkAccess("core.ShowSettings")?array('label'=>TbHtml::icon('icon-cog').'&nbsp;Settings&nbsp;',
                               'items'=>array(
-                                  array('label'=>TbHtml::icon('icon-user').'&nbsp;Users','url'=>'#'),
+                                  array('label'=>TbHtml::icon('icon-user').'&nbsp;Users','url'=>'/hqcmf/users/'),
                                   array('label'=>TbHtml::icon('icon-list-alt').'&nbsp;Modules','url'=>'#'),
                                   array('label'=>TbHtml::icon('icon-wrench').'&nbsp;Maintenance','url'=>'#'),
                                   array('label'=>TbHtml::icon('icon-list').'&nbsp;System Log','url'=>'#'),
                                   TbHtml::menuDivider(),
                                   array('label'=>TbHtml::icon('icon-cog').'&nbsp;System settings','url'=>'#'),
                               )
-                        ),
+                        ):""),
                         TbHtml::menuDivider(array('class'=>'divider-vertical')),
                         array('label'=>TbHtml::icon('icon-user').'&nbsp;'.Yii::app()->user->login.'&nbsp;',
                             'items'=>array(

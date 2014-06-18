@@ -41,7 +41,7 @@ class HqAuthManager extends CPhpAuthManager
                     $rights_array[] = (int)$right->r_flag;
                 }
                 if($su) $rights_array[] = 1; //su role has all flags to Allow
-                
+
                 if(count($rights_array)>0)
                     $access = (array_reduce($rights_array,"self::reduceRights") > 0 ? true : false);
 

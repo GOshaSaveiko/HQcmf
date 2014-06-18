@@ -106,7 +106,6 @@ class UserRole extends HqModel
 	}
 
     public function getName() {
-        if($this::model() !== null)
            return $this->ur_name;
     }
 
