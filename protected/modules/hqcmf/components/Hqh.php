@@ -28,6 +28,15 @@ class HQh
         return Yii::t(Yii::app()->controller->id.'.trans',$message,$trans);
     }
 
+    /**
+     * Checks user access short alias
+     * @param $task
+     * @return boolean
+     */
+    public static function ca($task)
+    {
+        return Yii::app()->user->checkAccess($task);
+    }
 
     public static function rmDirRec($dir)
     {
