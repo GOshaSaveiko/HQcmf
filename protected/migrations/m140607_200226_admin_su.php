@@ -6,7 +6,7 @@ class m140607_200226_admin_su extends CDbMigration
 	{
         $this->insert('{{user_role}}',
                       array('ur_name'=>'su',
-                            'ur_caption'=>'superuser'
+                            'ur_title'=>'superuser'
                         )
         );
         $z_user=$this->getDbConnection()->createCommand('SELECT `u_id` FROM `{{user}}` WHERE `u_login`=:login')->query(array(':login'=>'admin'));
