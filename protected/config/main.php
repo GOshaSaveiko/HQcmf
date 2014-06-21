@@ -14,8 +14,10 @@ return array(
 
 	// autoloading model and component classes
 	'import'=>array(
+        'application.components.*',
 		'application.models.*',
-		'application.components.*',
+        'application.behaviors.*',
+        'application.helpers.*',
 	),
 
 	'modules'=>array(
@@ -35,6 +37,12 @@ return array(
 
 
 	),
+
+    'behaviors'=> array(
+        array(
+          'class'=>'AppBehavior',
+        ),
+    ),
 
 	// application components
 	'components'=>array(

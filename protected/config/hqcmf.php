@@ -6,7 +6,6 @@ return
             'modules'=>array(
                 'users'=>array(
                     'class'=>'hqcmf.modules.users.UsersModule',
-                    'defaultController'=>'UsersModule'
                 )
             ),
             'defaultController'=>'Core',

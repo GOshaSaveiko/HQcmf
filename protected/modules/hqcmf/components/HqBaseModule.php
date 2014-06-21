@@ -37,6 +37,18 @@ class HqBaseModule extends CWebModule
         $this->configureTheme();
     }
 
+    /**
+     * default rules in UrlManager for modules
+     * @param $moduleId
+     * @return array
+     */
+    public static function rules($moduleId)
+    {
+        return array(
+            $moduleId.'/<module:\w+>/<action:\w+>'=>$moduleId.'/<module>/default/<action>',
+        );
+    }
+
     public function beforeControllerAction($controller, $action)
     {
         if(!parent::beforeControllerAction($controller, $action))
