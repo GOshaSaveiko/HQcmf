@@ -45,7 +45,7 @@ class HqBaseModule extends CWebModule
     public static function rules($moduleId)
     {
         return array(
-            $moduleId.'/<module:\w+>/<action:\w+>'=>$moduleId.'/<module>/default/<action>',
+            $moduleId.'/<module:(users)>/<action:\w+>'=>$moduleId.'/<module>/default/<action>',
         );
     }
 
