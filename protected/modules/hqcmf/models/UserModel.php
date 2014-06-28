@@ -15,6 +15,8 @@
  */
 class UserModel extends HqModel
 {
+    public $u_pass_repeat;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -41,10 +43,15 @@ class UserModel extends HqModel
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('u_login, u_pass', 'required'),
+            array('u_id, u_login, u_mail','unique','className' => 'UserModel','message'=>Hqh::t('{attribute} "{value}" has already been taken.')),
+            array('u_login','match','pattern'=>'~^[A-z0-9-_]+$~','message'=>Hqh::t('{attribute} can contain only %p',array('%p'=>'(A-z0-9-_)'))),
+            array('u_mail','email','message'=>Hqh::t('{attribute} seems not to be e-mail')),
+            array('u_login, u_mail, u_switch', 'required'),
+            array('u_pass, u_pass_repeat', 'required', 'on'=>'create'),
+            array('u_pass_repeat', 'compare', 'compareAttribute'=>'u_pass'),
             array('u_switch', 'numerical', 'integerOnly'=>true),
             array('u_login', 'length', 'max'=>24,'min'=>3),
-            array('u_pass', 'length', 'max'=>64),
+            array('u_pass, u_pass_repeat', 'length', 'max'=>64),
             array('u_mail', 'length', 'max'=>54),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
@@ -125,5 +132,23 @@ class UserModel extends HqModel
         $roles=$this->getInstanceRelation('userRoleRelations')->getUserRoles($this->u_id);
 
         return $roles;
+    }
+
+    /**
+     * Password hashing before model save.
+     * @return bool
+     */
+    public function beforeSave()
+    {
+        if($this->isNewRecord)
+        {
+            $this->u_pass = $this->hashPassword($this->u_pass);
+        }else{
+            if(!empty($this->u_pass))
+            {
+                $this->u_pass = $this->hashPassword($this->u_pass);
+            }
+        }
+        return parent::beforeSave();
     }
 }
