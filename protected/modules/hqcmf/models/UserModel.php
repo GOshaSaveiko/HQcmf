@@ -16,6 +16,7 @@
 class UserModel extends HqModel
 {
     public $u_pass_repeat;
+    public $u_roles;
 
     /**
      * Returns the static model of the specified AR class.
@@ -134,12 +135,26 @@ class UserModel extends HqModel
         return $roles;
     }
 
+    public function getRolesList()
+    {
+        $list = array();
+        $roles = new UserRole();
+        $list_roles = $roles::model()->findAll('ur_switch = 1');
+        foreach($list_roles as $role)
+        {
+           $list[$role['ur_id']] = $role['ur_caption'];
+        }
+        return $list;
+    }
+
     /**
      * Password hashing before model save.
      * @return bool
      */
     public function beforeSave()
     {
+        var_dump($this);
+        Yii::app()->end();
         if($this->isNewRecord)
         {
             $this->u_pass = $this->hashPassword($this->u_pass);
