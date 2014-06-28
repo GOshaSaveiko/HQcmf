@@ -120,4 +120,27 @@ class UserRoleRelation extends HqModel
         }
         return $roles;
     }
+
+    /**
+     * @param $user_id
+     * @return array roles for user
+     */
+    public static function getUserRolesIds($user_id)
+    {
+        $roles=array();
+        $ar_roles=self::model()->findAll(array(
+                'select'=>'urr_ur_id',
+                'condition'=>'urr_u_id=:userID',
+                'params'=>array(':userID'=>(int)$user_id),
+            ));
+
+        if ($ar_roles!==null)
+        {
+            foreach ($ar_roles as $role)
+            {
+                    $roles[]=$role->urr_ur_id;
+            }
+        }
+        return $roles;
+    }
 }

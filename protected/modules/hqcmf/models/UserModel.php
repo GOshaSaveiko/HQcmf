@@ -18,6 +18,11 @@ class UserModel extends HqModel
     public $u_pass_repeat;
     public $u_roles;
 
+    public function init(){
+        parent::init();
+       //
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -49,6 +54,7 @@ class UserModel extends HqModel
             array('u_mail','email','message'=>Hqh::t('{attribute} seems not to be e-mail')),
             array('u_login, u_mail, u_switch', 'required'),
             array('u_pass, u_pass_repeat', 'required', 'on'=>'create'),
+            array('u_roles', 'required', 'message'=>Hqh::t('User must have at least one role')),
             array('u_pass_repeat', 'compare', 'compareAttribute'=>'u_pass'),
             array('u_switch', 'numerical', 'integerOnly'=>true),
             array('u_login', 'length', 'max'=>24,'min'=>3),
@@ -73,6 +79,14 @@ class UserModel extends HqModel
         // class name for the relations automatically generated below.
         return array(
             'userRoleRelations' => array(self::HAS_MANY, 'UserRoleRelation', 'urr_u_id'),
+        );
+    }
+
+    public function behaviors(){
+        return array(
+            'userBehavior' => array(
+                'class' => 'hqcmf.modules.users.components.UserBehavior'
+            ),
         );
     }
 
@@ -111,22 +125,7 @@ class UserModel extends HqModel
             'criteria'=>$criteria,
         ));
     }
-	/**
-	 * Validates provided password
-	 * @return boolean
-	 */
-	public function validatePassword($password)
-    {
-        return CPasswordHelper::verifyPassword($password,$this->u_pass);
-    }
-	/**
-	 * Generate a secure hash from a password and a random salt.
-	 * @return string
-	 */
-    public function hashPassword($password)
-    {
-        return CPasswordHelper::hashPassword($password);
-    }
+
 
     public function getRoles()
     {
@@ -147,23 +146,5 @@ class UserModel extends HqModel
         return $list;
     }
 
-    /**
-     * Password hashing before model save.
-     * @return bool
-     */
-    public function beforeSave()
-    {
-        var_dump($this);
-        Yii::app()->end();
-        if($this->isNewRecord)
-        {
-            $this->u_pass = $this->hashPassword($this->u_pass);
-        }else{
-            if(!empty($this->u_pass))
-            {
-                $this->u_pass = $this->hashPassword($this->u_pass);
-            }
-        }
-        return parent::beforeSave();
-    }
+
 }
